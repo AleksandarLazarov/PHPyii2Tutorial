@@ -43,22 +43,29 @@ class BranchesSearch extends Branches
     public function search($params)
     {
         $query = Branches::find();
-
         // add conditions that should always apply here
-
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
 
-        $this->load($params);
+        $query->joinWith('companiesCompany');    //Dobavqme uslovie v zaqvkata za da mojem da tarsim
 
-        if (!$this->validate()) {
+        $dataProvider->setSort([
+            'attributes'=>[
+                'branch_name',
+                'branch_status',
+                'companies_company_id'=>[
+                    'asc'=>['companies.company_name'=>SORT_ASC],
+                    'desc'=>['companies.company_name'=>SORT_DESC],
+                ]
+            ]
+        ]);
+
+        if (!($this->load($params) && $this->validate())) {
             // uncomment the following line if you do not want to return any records when validation fails
             // $query->where('0=1');
             return $dataProvider;
         }
-
-        $query->joinWith('companiesCompany');    //Dobavqme uslovie v zaqvkata za da mojem da tarsim
 
         // grid filtering conditions
         $query->andFilterWhere([
