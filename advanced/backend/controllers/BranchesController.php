@@ -5,6 +5,7 @@ namespace backend\controllers;
 use Yii;
 use backend\models\Branches;
 use backend\models\BranchesSearch;
+use yii\bootstrap\ActiveForm;
 use yii\web\Controller;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
@@ -71,6 +72,11 @@ class BranchesController extends Controller
 //        {
             $model = new Branches();
 
+            if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())){
+                Yii::$app->response->format='json';
+                return ActiveForm::validate($model);
+            }
+
             if ($model->load(Yii::$app->request->post())) {
                 $model->branch_created_date = date('Y-m-d h-i-s');
                 if($model->save())  //Ако е сейвнат модела чрез AJAX пише 1 в console.log
@@ -90,6 +96,17 @@ class BranchesController extends Controller
 //            throw new ForbiddenHttpException;
 //        }
 
+    }
+
+
+
+    public function actionValidation()
+    {
+        $model = new Branches();
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())){
+            Yii::$app->response->format='json';
+            return ActiveForm::validate($model);
+        }
     }
 
     /**

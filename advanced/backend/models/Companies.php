@@ -38,7 +38,10 @@ class Companies extends \yii\db\ActiveRecord
             [['company_email'], 'email'],
             [['company_created_date'], 'safe'],
             [['company_status'], 'string'],
-            [['file'],'file'],  //Добавяме правило, Ако го няма файла не се качва
+            [['file'],'image','extensions' => 'png, jpg',
+                'minWidth' => 100, 'maxWidth' => 1000,
+                'minHeight' => 100, 'maxHeight' => 1000,],  //Opredelqme max razmeri
+//            [['file'],'file'],  //Добавяме правило, Ако го няма файла не се качва
             [['company_name', 'logo', 'company_email'], 'string', 'max' => 100],
             [['company_address'], 'string', 'max' => 255],
         ];
