@@ -21,6 +21,7 @@ use yii\helpers\Url;
         'validationUrl'=>Url::toRoute('branches/validation'),
     ]);?>
 
+
     <!--?= $form->field($model, 'companies_company_id')->textInput() ?-->
 <!--?= $form->field($model, 'companies_company_id')->dropDownList(         //tova pravi dropDownList v CREATE I UPDATE
            ArrayHelper::map(Companies::find()->all(),'company_id','company_name'),     //company_name e poleto ot koeto Selektvame
