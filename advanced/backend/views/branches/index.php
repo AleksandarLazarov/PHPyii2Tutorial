@@ -6,6 +6,7 @@ use yii\widgets\Pjax;     //Search s AJAX
 use yii\bootstrap\Modal;    //Добавяме това за да молзваме класа Modal
 use yii\helpers\Url;      //Добавяме това за да молзваме класа Url
 
+
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\BranchesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */

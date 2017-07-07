@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use Yii;
 use backend\models\Branches;
+use backend\models\Departments;
 use backend\models\BranchesSearch;
 use yii\bootstrap\ActiveForm;
 use yii\web\Controller;
@@ -11,6 +12,9 @@ use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use yii\base\ErrorException;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
 
 /**
  * BranchesController implements the CRUD actions for Branches model.
@@ -50,6 +54,20 @@ class BranchesController extends Controller
      */
     public function actionIndex()
     {
+        $model = Departments::find()->all();
+        $id = 2;
+        $username = "Pes";
+        echo Html::beginForm(['branches/update', 'branches_id' => $id], 'post', ['enctype' => 'multipart/form-data']);
+?>
+        <?= Html::dropDownList('department_id', $id, ArrayHelper::map($model, 'department_id', 'department_name')) ?>
+        <br>
+
+
+<?php
+        echo Html::endForm();
+        exit;
+
+
         $searchModel = new BranchesSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         

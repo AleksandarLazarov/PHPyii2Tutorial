@@ -38,9 +38,21 @@ return [
                 ],
             ],
         ],
-        'mailer'=>[         //Това се добавя за пращане на имейли
-            'class'=>'yii\swiftmailer\Mailer',
-            'useFileTransport'=>false,
+//        'mailer'=>[         //Това се добавя за пращане на имейли
+//            'class'=>'yii\swiftmailer\Mailer',
+//            'useFileTransport'=>false,
+//        ],
+        'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'localhost',
+                'username' => '',
+                'password' => '',
+                'port' => '587',
+                'encryption' => 'tls',
+                'localDomain' => '[127.0.0.1]',
+            ],
         ],
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
