@@ -32,8 +32,8 @@ $this->params['breadcrumbs'][] = $this->title;
         ]);
     echo "<div id='modalContent'></div>";
     Modal::end();
-    ?>
 
+    ?>
     <?php Pjax::begin(['id'=>'branchesGrid']);  //Search s AJAX е без ID-то //ID-то е за AJAX Submit-а ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
